@@ -14,13 +14,26 @@ import java.util.Date;
 
 public class Carrera {
 
+  
    
 private String nombre;
-private Date fechaCarrera;
+private String fechaCarrera;
 private String lugar;
-private int nMaximo;
+private String nMaximo;
 private Corredor[] listaCorredores;
 private int[] dorsales;
+
+
+  public Carrera(String nombre, String fechaCarrera, String lugar, String nMaximo) {
+        this.nombre = nombre;
+        this.fechaCarrera = fechaCarrera;
+        this.lugar = lugar;
+        this.nMaximo = nMaximo;
+    }
+
+
+
+
 
 
  public String getNombre() {
@@ -31,11 +44,11 @@ private int[] dorsales;
         this.nombre = nombre;
     }
 
-    public Date getFechaCarrera() {
+    public String getFechaCarrera() {
         return fechaCarrera;
     }
 
-    public void setFechaCarrera(Date fechaCarrera) {
+    public void setFechaCarrera(String fechaCarrera) {
         this.fechaCarrera = fechaCarrera;
     }
 
@@ -47,11 +60,11 @@ private int[] dorsales;
         this.lugar = lugar;
     }
 
-    public int getnMaximo() {
+    public String getnMaximo() {
         return nMaximo;
     }
 
-    public void setnMaximo(int nMaximo) {
+    public void setnMaximo(String nMaximo) {
         this.nMaximo = nMaximo;
     }
 
@@ -73,11 +86,11 @@ private int[] dorsales;
     
       public String[] toArrayString(){
     
-    String [] s= new String [6];
+    String [] s= new String [4];
     s[0] = nombre;
-    s[1] = DNI;
-    s[2] = fechaNacimiento;
-    s[3] = direccion;
-    s[4] = telefono;
+    s[1] = fechaCarrera;
+    s[2] = lugar;
+    s[3] = nMaximo;
+
     return s;}
 }

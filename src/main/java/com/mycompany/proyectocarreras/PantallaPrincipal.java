@@ -16,31 +16,42 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form PantallaPrincipal
      */
+        DefaultTableModel dtm1 = new DefaultTableModel();
+        DefaultTableModel dtm2 = new DefaultTableModel();
     public PantallaPrincipal() {
         initComponents();
         inicializarTablaCarreras();
        inicializarTablaCorredores();
+     
     }
         private void inicializarTablaCorredores(){
     
-        DefaultTableModel dtm = new DefaultTableModel();
-        dtm.setColumnIdentifiers(new String[]{"Nombre","DNI","Fecha Nacimiento","Dirección","Teléfono"});
-        jTableCorredores.setModel(dtm);
+      
+        dtm1.setColumnIdentifiers(new String[]{"Nombre","DNI","Fecha Nacimiento","Dirección","Teléfono"});
+        jTableCorredores.setAutoCreateRowSorter(true);
+        jTableCorredores.setModel(dtm1);
         
     }
-               private void inicializarTablaCarreras(){
+        private void inicializarTablaCarreras(){
     
-        DefaultTableModel dtm = new DefaultTableModel();
-        dtm.setColumnIdentifiers(new String[]{"Nombre","DNI","Fecha Nacimiento","Dirección","Teléfono"});
-        jTableCarreras.setModel(dtm);
+     
+        dtm2.setColumnIdentifiers(new String[]{"Nombre","Fecha Carrera","Lugar","nº Máximo Corredores"});
+         jTableCarreras.setAutoCreateRowSorter(true);
+        jTableCarreras.setModel(dtm2);
         
     }
+               
     
     
     public void anadirCorredor(Corredor corredor){
     
         DefaultTableModel dtm = (DefaultTableModel)jTableCorredores.getModel();
         dtm.addRow(corredor.toArrayString());
+    }
+     public void anadirCarrera(Carrera carrera){
+    
+        DefaultTableModel dtm = (DefaultTableModel)jTableCarreras.getModel();
+        dtm.addRow(carrera.toArrayString());
     }
 
     /**
@@ -54,13 +65,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         jButtonAlta = new javax.swing.JButton();
         jButtonBaja = new javax.swing.JButton();
-        jButtonModificar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableCorredores = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableCarreras = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jButtonAltaCarrera = new javax.swing.JButton();
+        jButtonBajaCarrera = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,13 +87,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jButtonBaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonBajaActionPerformed(evt);
-            }
-        });
-
-        jButtonModificar.setText("modificar");
-        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonModificarActionPerformed(evt);
             }
         });
 
@@ -115,6 +120,20 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         jLabel2.setText("CORREDORES");
 
+        jButtonAltaCarrera.setText("alta");
+        jButtonAltaCarrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAltaCarreraActionPerformed(evt);
+            }
+        });
+
+        jButtonBajaCarrera.setText("baja");
+        jButtonBajaCarrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBajaCarreraActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -124,17 +143,20 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jButtonAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(133, 133, 133)
                         .addComponent(jButtonBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(58, 58, 58))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonAltaCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonBajaCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(94, 94, 94)
@@ -150,12 +172,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAltaCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonBajaCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(125, Short.MAX_VALUE))
+                    .addComponent(jButtonAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(114, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(35, 35, 35)
@@ -172,12 +195,23 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAltaActionPerformed
 
     private void jButtonBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBajaActionPerformed
-        // TODO add your handling code here:
+     
+        int getSelectedRowForDeletion = jTableCorredores.getSelectedRow();
+        //Check if their is a row selected
+            dtm1.removeRow(getSelectedRowForDeletion);
+         
     }//GEN-LAST:event_jButtonBajaActionPerformed
 
-    private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonModificarActionPerformed
+    private void jButtonAltaCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAltaCarreraActionPerformed
+        DialogoAltaCarreras dialogoAltaCarreras = new DialogoAltaCarreras(this,true);
+      dialogoAltaCarreras.setVisible(true);
+    }//GEN-LAST:event_jButtonAltaCarreraActionPerformed
+
+    private void jButtonBajaCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBajaCarreraActionPerformed
+         int getSelectedRowForDeletion = jTableCarreras.getSelectedRow();
+        //Check if their is a row selected
+            dtm2.removeRow(getSelectedRowForDeletion);
+    }//GEN-LAST:event_jButtonBajaCarreraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,8 +250,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlta;
+    private javax.swing.JButton jButtonAltaCarrera;
     private javax.swing.JButton jButtonBaja;
-    private javax.swing.JButton jButtonModificar;
+    private javax.swing.JButton jButtonBajaCarrera;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
