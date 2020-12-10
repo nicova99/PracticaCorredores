@@ -210,7 +210,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBajaActionPerformed
 
     private void jButtonAltaCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAltaCarreraActionPerformed
-        DialogoAltaCarreras dialogoAltaCarreras = new DialogoAltaCarreras(this,true);
+    DialogoAltaCarreras dialogoAltaCarreras = new DialogoAltaCarreras(this,true);
       dialogoAltaCarreras.setVisible(true);
     }//GEN-LAST:event_jButtonAltaCarreraActionPerformed
 

@@ -5,6 +5,8 @@
  */
 package com.mycompany.proyectocarreras;
 
+import java.util.Date;
+
 
 
 /**
@@ -41,8 +43,8 @@ public class DialogoAltaCarreras extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jtextFieldNombre = new java.awt.TextField();
         jtextFieldLugar = new java.awt.TextField();
-        jtextFieldFecha = new java.awt.TextField();
         jTextFieldMaxCorredores = new javax.swing.JTextField();
+        jSpinnerFechaCarrera = new javax.swing.JSpinner();
         jButtonAlta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -73,6 +75,8 @@ public class DialogoAltaCarreras extends javax.swing.JDialog {
             }
         });
 
+        jSpinnerFechaCarrera.setModel(new javax.swing.SpinnerDateModel());
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -89,9 +93,7 @@ public class DialogoAltaCarreras extends javax.swing.JDialog {
                     .addComponent(jTextFieldMaxCorredores)
                     .addComponent(jtextFieldNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
                     .addComponent(jtextFieldLugar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jtextFieldFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jSpinnerFechaCarrera))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -103,11 +105,11 @@ public class DialogoAltaCarreras extends javax.swing.JDialog {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jtextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(21, 21, 21)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jtextFieldFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addComponent(jSpinnerFechaCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(15, 15, 15)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
                             .addComponent(jtextFieldLugar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -162,10 +164,11 @@ public class DialogoAltaCarreras extends javax.swing.JDialog {
      
         String nombre = jtextFieldNombre.getText();
         String lugar = jtextFieldLugar.getText();
-        String fecha = jtextFieldFecha.getText();
-        String maxCorredores = jTextFieldMaxCorredores.getText();
-           
-        Carrera carrera = new Carrera(nombre,lugar,fecha,maxCorredores);
+         Date fecha = (Date)jSpinnerFechaCarrera.getValue();
+         int maxCorredores = Integer.parseInt(jTextFieldMaxCorredores.getText());
+         
+         
+        Carrera carrera = new Carrera(nombre,fecha,lugar,maxCorredores);
         pantallaPrincipal.anadirCarrera(carrera);
                 
                 
@@ -190,8 +193,8 @@ public class DialogoAltaCarreras extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JSpinner jSpinnerFechaCarrera;
     private javax.swing.JTextField jTextFieldMaxCorredores;
-    private java.awt.TextField jtextFieldFecha;
     private java.awt.TextField jtextFieldLugar;
     private java.awt.TextField jtextFieldNombre;
     // End of variables declaration//GEN-END:variables

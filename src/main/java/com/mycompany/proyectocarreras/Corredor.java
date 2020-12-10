@@ -5,6 +5,8 @@
  */
 package com.mycompany.proyectocarreras;
 
+import java.util.Date;
+
 
 
 /**
@@ -14,11 +16,11 @@ package com.mycompany.proyectocarreras;
 public class Corredor {
     private String nombre;
     private String DNI;
-    private String fechaNacimiento;
+    private Date fechaNacimiento;
     private String direccion;
-    private String telefono;
+    private int telefono;
 
-    public Corredor(String nombre, String DNI, String fechaNacimiento, String direccion, String telefono) {
+    public Corredor(String nombre, String DNI, Date fechaNacimiento, String direccion, int telefono) {
         this.nombre = nombre;
         this.DNI = DNI;
         this.fechaNacimiento = fechaNacimiento;
@@ -46,11 +48,11 @@ public class Corredor {
         this.DNI = DNI;
     }
 
-    public String getFechaNacimiento() {
+    public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
+    public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -62,11 +64,11 @@ public class Corredor {
         this.direccion = direccion;
     }
 
-    public String getTelefono() {
+    public int getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
     
@@ -75,9 +77,9 @@ public class Corredor {
     String [] s= new String [5];
     s[0] = nombre;
     s[1] = DNI;
-    s[2] = fechaNacimiento;
+    s[2] = fechaNacimiento.toString();
     s[3] = direccion;
-    s[4] = telefono;
+    s[4] = Integer.toString(telefono);
     return s;}
 }
 

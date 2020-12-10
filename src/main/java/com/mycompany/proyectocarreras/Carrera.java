@@ -17,14 +17,14 @@ public class Carrera {
   
    
 private String nombre;
-private String fechaCarrera;
+private Date fechaCarrera;
 private String lugar;
-private String nMaximo;
+private int nMaximo;
 private Corredor[] listaCorredores;
 private int[] dorsales;
 
 
-  public Carrera(String nombre, String fechaCarrera, String lugar, String nMaximo) {
+  public Carrera(String nombre, Date fechaCarrera, String lugar, int nMaximo) {
         this.nombre = nombre;
         this.fechaCarrera = fechaCarrera;
         this.lugar = lugar;
@@ -44,11 +44,11 @@ private int[] dorsales;
         this.nombre = nombre;
     }
 
-    public String getFechaCarrera() {
+    public Date getFechaCarrera() {
         return fechaCarrera;
     }
 
-    public void setFechaCarrera(String fechaCarrera) {
+    public void setFechaCarrera(Date fechaCarrera) {
         this.fechaCarrera = fechaCarrera;
     }
 
@@ -60,11 +60,11 @@ private int[] dorsales;
         this.lugar = lugar;
     }
 
-    public String getnMaximo() {
+    public int getnMaximo() {
         return nMaximo;
     }
 
-    public void setnMaximo(String nMaximo) {
+    public void setnMaximo(int nMaximo) {
         this.nMaximo = nMaximo;
     }
 
@@ -88,9 +88,9 @@ private int[] dorsales;
     
     String [] s= new String [4];
     s[0] = nombre;
-    s[1] = fechaCarrera;
+    s[1] = fechaCarrera.toString();
     s[2] = lugar;
-    s[3] = nMaximo;
+    s[3] = Integer.toString(nMaximo);
 
     return s;}
 }
