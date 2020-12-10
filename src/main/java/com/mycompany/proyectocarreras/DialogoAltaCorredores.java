@@ -28,9 +28,9 @@ public class DialogoAltaCorredores extends javax.swing.JDialog {
         initComponents();
         
 
+       
         
       
-    
     }
 
     /**
@@ -181,7 +181,7 @@ public class DialogoAltaCorredores extends javax.swing.JDialog {
     }//GEN-LAST:event_jtextFieldNombreActionPerformed
 
     private void jButtonAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAltaActionPerformed
-     
+          
         String nombre = jtextFieldNombre.getText();
 
         String dni = jtextFieldDni.getText();
