@@ -24,8 +24,24 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         inicializarTablaCarreras();
        inicializarTablaCorredores();
        inicializarTablaCorredoresCarrera();
+       
+       
+      
      
-    }
+    
+        private void mostrarCorredoresCarrera(){
+            
+          int filaCarrera = jTableCarreras.getSelectedRow();
+          int columna = 0;
+        String nombre =  jTableCarreras.getComponentAt(filaCarrera, columna).toString();
+        
+        for (int i = 0 ; i <  )    
+            
+        }
+        
+        
+        
+
         private void inicializarTablaCorredores(){
     
       
@@ -58,6 +74,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     
         DefaultTableModel dtm = (DefaultTableModel)jTableCorredores.getModel();
         dtm.addRow(corredor.toArrayString());
+        
         
     }
      public void anadirCarrera(Carrera carrera){
@@ -98,7 +115,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -159,8 +175,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("CARRERAS");
 
-        jMenu1.setText("Altas");
-
         jMenu4.setText("Corredores");
 
         jMenuItem1.setText("Alta");
@@ -179,7 +193,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem2);
 
-        jMenu1.add(jMenu4);
+        jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Carreras");
 
@@ -199,9 +213,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu5.add(jMenuItem4);
 
-        jMenu1.add(jMenu5);
-
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
 
@@ -219,10 +231,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                         .addGap(118, 118, 118)
                         .addComponent(jLabel2))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 28, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 10, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,7 +326,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;

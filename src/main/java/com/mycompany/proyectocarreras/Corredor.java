@@ -5,6 +5,7 @@
  */
 package com.mycompany.proyectocarreras;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -19,6 +20,7 @@ public class Corredor {
     private Date fechaNacimiento;
     private String direccion;
     private int telefono;
+    private ArrayList<Carrera> listaCarreras;
 
     public Corredor(String nombre, String DNI, Date fechaNacimiento, String direccion, int telefono) {
         this.nombre = nombre;
@@ -28,7 +30,15 @@ public class Corredor {
         this.telefono = telefono;
     }
 
-    
+    public ArrayList<Carrera> getListaCarreras() {
+        return listaCarreras;
+    }
+
+    public void setListaCarreras(ArrayList<Carrera> listaCarreras) {
+        this.listaCarreras = listaCarreras;
+    }
+
+     
     
     
     

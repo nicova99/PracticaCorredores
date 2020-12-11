@@ -8,6 +8,8 @@ package com.mycompany.proyectocarreras;
 import java.util.ArrayList;
 import java.util.Date;
 
+
+
 /**
  *
  * @author nico_
@@ -21,7 +23,7 @@ private String nombre;
 private Date fechaCarrera;
 private String lugar;
 private int nMaximo;
-private ArrayList<Corredor> listaCorredores;
+ private ArrayList<Corredor> listaCorredores;
 
 
   public Carrera(String nombre, Date fechaCarrera, String lugar, int nMaximo) {
@@ -29,8 +31,10 @@ private ArrayList<Corredor> listaCorredores;
         this.fechaCarrera = fechaCarrera;
         this.lugar = lugar;
         this.nMaximo = nMaximo;
-        listaCorredores =new ArrayList<>();
+     
     }
+    
+    
 
     public ArrayList<Corredor> getListaCorredores() {
         return listaCorredores;
@@ -39,6 +43,7 @@ private ArrayList<Corredor> listaCorredores;
     public void setListaCorredores(ArrayList<Corredor> listaCorredores) {
         this.listaCorredores = listaCorredores;
     }
+
 
 
  public String getNombre() {
