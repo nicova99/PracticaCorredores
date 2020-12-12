@@ -46,6 +46,7 @@ public class DialogoAltaCarreras extends javax.swing.JDialog {
         jTextFieldMaxCorredores = new javax.swing.JTextField();
         jSpinnerFechaCarrera = new javax.swing.JSpinner();
         jButtonAlta = new javax.swing.JButton();
+        jLabelError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -91,7 +92,7 @@ public class DialogoAltaCarreras extends javax.swing.JDialog {
                 .addGap(102, 102, 102)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextFieldMaxCorredores)
-                    .addComponent(jtextFieldNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                    .addComponent(jtextFieldNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
                     .addComponent(jtextFieldLugar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSpinnerFechaCarrera))
                 .addContainerGap())
@@ -126,12 +127,17 @@ public class DialogoAltaCarreras extends javax.swing.JDialog {
             }
         });
 
+        jLabelError.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabelError.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(45, 45, 45)
+                .addComponent(jLabelError, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49))
             .addGroup(layout.createSequentialGroup()
@@ -145,8 +151,13 @@ public class DialogoAltaCarreras extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonAlta)
-                .addGap(0, 39, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonAlta)
+                        .addGap(0, 39, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
 
         pack();
@@ -162,6 +173,10 @@ public class DialogoAltaCarreras extends javax.swing.JDialog {
 
     private void jButtonAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAltaActionPerformed
      
+         if ((jtextFieldNombre.getText().length() > 1) && (jtextFieldLugar.getText().length() > 1) &&(jTextFieldMaxCorredores.getText().length() > 1)){
+        
+        
+        
         String nombre = jtextFieldNombre.getText();
         String lugar = jtextFieldLugar.getText();
          Date fecha = (Date)jSpinnerFechaCarrera.getValue();
@@ -174,7 +189,9 @@ public class DialogoAltaCarreras extends javax.swing.JDialog {
                 
                  
         dispose();
-        
+         }
+         
+           else jLabelError.setText("No puede haber campos sin rellenar");
     }//GEN-LAST:event_jButtonAltaActionPerformed
 
     private void jTextFieldMaxCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMaxCorredoresActionPerformed
@@ -192,6 +209,7 @@ public class DialogoAltaCarreras extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabelError;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSpinner jSpinnerFechaCarrera;
     private javax.swing.JTextField jTextFieldMaxCorredores;
