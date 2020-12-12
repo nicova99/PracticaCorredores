@@ -7,11 +7,15 @@ package com.mycompany.proyectocarreras;
 
 import javax.swing.table.DefaultTableModel;
 import com.mycompany.componentetemporizador.ComponenteTemporizador;
+import java.util.ArrayList;
 /**
  *
  * @author nico_
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
+       private ArrayList<Carrera> listaCarreras;
+        private ArrayList<Corredor> listaCorredores;
+    
 
     /**
      * Creates new form PantallaPrincipal
@@ -26,15 +30,28 @@ public class PantallaPrincipal extends javax.swing.JFrame {
        inicializarTablaCorredoresCarrera();
        
        
+       
       
     }
     
         private void mostrarCorredoresCarrera(){
-            
+           DefaultTableModel dtm = (DefaultTableModel)jTableCorredoresCarrera.getModel();
           int filaCarrera = jTableCarreras.getSelectedRow();
-          int columna = 0;
-        String nombre =  jTableCarreras.getComponentAt(filaCarrera, columna).toString();
-        
+          int columnaNombre = 0;
+          String nombreCarrera = (String)  jTableCarreras.getModel().getValueAt(filaCarrera, columnaNombre).toString();
+       
+         
+        int i = 0;
+        Carrera carrera = listaCarreras.get(i);
+        while(i < listaCarreras.size()){
+        if (carrera.getNombre().equals(nombreCarrera)){
+            int j = 0;
+            while(j < carrera.getListaCorredores().size()){
+               dtm.addRow(carrera.getListaCorredores().get(j).toArrayString());
+                }
+        }
+        else i++;
+        }
   
         }
         
@@ -73,6 +90,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     
         DefaultTableModel dtm = (DefaultTableModel)jTableCorredores.getModel();
         dtm.addRow(corredor.toArrayString());
+        listaCorredores.add(corredor);
         
         
     }
@@ -80,18 +98,27 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     
         DefaultTableModel dtm = (DefaultTableModel)jTableCarreras.getModel();
         dtm.addRow(carrera.toArrayString());
+        listaCarreras.add(carrera);
     }
-       public void anadirCorredorCarrera(){
+       public void anadirCorredorCarrera(Corredor corredor,Carrera carrera){
     
-        DefaultTableModel dtmCorredorCarrera = (DefaultTableModel)jTableCorredoresCarrera.getModel();
-            DefaultTableModel dtmCorredores = (DefaultTableModel)jTableCorredores.getModel();
-              DefaultTableModel dtmCarrera = (DefaultTableModel)jTableCarreras.getModel();
-         
-       
-             
+         DefaultTableModel dtm = (DefaultTableModel)jTableCorredoresCarrera.getModel();
+        dtm.addRow(corredor.toArrayString());
+        carrera.getListaCorredores().add(corredor);
+        
+        
                
               
               
+    }
+       
+       
+    public ArrayList<Carrera> getListaCarreras() {
+        return listaCarreras;
+    }
+
+    public void setListaCarreras(ArrayList<Carrera> listaCarreras) {
+        this.listaCarreras = listaCarreras;
     }
 
     /**
@@ -120,6 +147,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
 
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
@@ -214,6 +244,26 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
+        jMenu6.setText("Gestionar Carrera");
+
+        jMenuItem5.setText("Añadir corredor");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem5);
+
+        jMenuItem6.setText("Quitar corredor");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem6);
+
+        jMenuBar1.add(jMenu6);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -231,14 +281,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(141, 141, 141)
                         .addComponent(jLabel2)))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 21, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(63, 63, 63))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,6 +336,34 @@ public class PantallaPrincipal extends javax.swing.JFrame {
          dtm2.removeRow(getSelectedRowForDeletion);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    
+        String nombreCarrera = (String) jTableCarreras.getModel().getValueAt( jTableCarreras.getSelectedRow(),0).toString();
+        String nombreCorredor = (String) jTableCarreras.getModel().getValueAt(jTableCorredores.getSelectedRow(),0).toString();
+        int corredorAgregar;
+        int carreraAgregar;
+        int i = 0;
+        int j = 0;
+             while (i < listaCorredores.size())   {
+                  if (listaCorredores.get(i).getNombre().equals(nombreCorredor))
+                      corredorAgregar = i;
+                  else i++;
+                  
+             }
+         while (j < listaCarreras.size())   {
+                  if (listaCarreras.get(j).getNombre().equals(nombreCarrera))
+                      carreraAgregar = i;
+                   else j++;
+             }
+        anadirCorredorCarrera(listaCorredores.get(i), listaCarreras.get(j));
+  
+        mostrarCorredoresCarrera();
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -328,11 +406,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
