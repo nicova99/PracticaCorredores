@@ -22,13 +22,18 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         DefaultTableModel dtm1 = new DefaultTableModel();
         DefaultTableModel dtm2 = new DefaultTableModel(); 
         DefaultTableModel dtm3 = new DefaultTableModel(); 
+        DefaultTableModel dtm4 = new DefaultTableModel(); 
+         boolean carreraIniciada = false;
+         
     public PantallaPrincipal() {
         initComponents();
         inicializarTablaCarreras();
        inicializarTablaCorredores();
        inicializarTablaCorredoresCarrera();
-       
-       
+            inicializarTiempos();
+            
+          
+         
        
       
     }
@@ -82,7 +87,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jTableCorredoresCarrera.setModel(dtm3);
         
     }
+          private void inicializarTiempos(){
+    
+     
+        dtm4.setColumnIdentifiers(new String[]{"Dorsal","Tiempo"});
+         jTableTiempos.setAutoCreateRowSorter(true);
+        jTableTiempos.setModel(dtm4);
         
+    }   
     
     
     public void anadirCorredor(Corredor corredor){
@@ -104,13 +116,21 @@ public class PantallaPrincipal extends javax.swing.JFrame {
          DefaultTableModel dtm = (DefaultTableModel)jTableCorredoresCarrera.getModel();
         dtm.addRow(corredor.toArrayString());
         carrera.getListaCorredores().add(corredor);
-        
-        
-               
-              
-              
+          
     }
        
+         public void anadirTiempo(int dorsal){
+     DefaultTableModel dtm = (DefaultTableModel)jTableTiempos.getModel();
+     String[] datos = new String[2];
+      datos[0] = Integer.toString(dorsal);
+     datos[1] = relojDigital1.getText();
+             
+            
+     
+        dtm.addRow(datos);
+      
+    
+    }
        
     public ArrayList<Carrera> getListaCarreras() {
         return listaCarreras;
@@ -140,6 +160,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         relojDigital1 = new com.mycompany.componentereloj.RelojDigital();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTableTiempos = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -150,12 +173,19 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenu6 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
 
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 204, 204));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        setForeground(new java.awt.Color(204, 255, 255));
 
+        jTableCorredores.setBackground(new java.awt.Color(204, 255, 255));
         jTableCorredores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -169,6 +199,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTableCorredores);
 
+        jTableCarreras.setBackground(new java.awt.Color(204, 255, 255));
         jTableCarreras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -182,6 +213,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTableCarreras);
 
+        jTableCorredoresCarrera.setBackground(new java.awt.Color(204, 255, 255));
         jTableCorredoresCarrera.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -195,14 +227,46 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jTableCorredoresCarrera);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 153, 153));
         jLabel1.setText("CORREDORES INSCRITOS");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 153, 153));
         jLabel2.setText("CORREDORES");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 153, 153));
         jLabel3.setText("CARRERAS");
+
+        relojDigital1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        relojDigital1.setForeground(new java.awt.Color(0, 153, 153));
+        relojDigital1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                relojDigital1MouseClicked(evt);
+            }
+        });
+
+        jTableTiempos.setBackground(new java.awt.Color(204, 255, 255));
+        jTableTiempos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(jTableTiempos);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 153, 153));
+
+        jMenuBar1.setBackground(new java.awt.Color(0, 153, 153));
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jMenuBar1.setForeground(new java.awt.Color(0, 153, 153));
 
         jMenu4.setText("Corredores");
 
@@ -246,6 +310,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         jMenu6.setText("Gestionar Carrera");
 
+        jMenuItem5.setBackground(new java.awt.Color(255, 255, 255));
         jMenuItem5.setText("Añadir corredor");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -262,6 +327,22 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem6);
 
+        jMenuItem7.setText("Iniciar Carrera");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem7);
+
+        jMenuItem8.setText("Detener Carrera");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem8);
+
         jMenuBar1.add(jMenu6);
 
         setJMenuBar(jMenuBar1);
@@ -276,44 +357,56 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(140, 140, 140)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(jLabel2)))
+                        .addGap(107, 107, 107)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 98, Short.MAX_VALUE)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(63, 63, 63))))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(relojDigital1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(63, 63, 63))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(relojDigital1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addGap(28, 28, 28))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(166, 166, 166)
-                        .addComponent(relojDigital1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 11, Short.MAX_VALUE))
+                        .addGap(19, 19, 19)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(36, 36, 36)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(27, 27, 27)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGap(188, 188, 188)
+                            .addComponent(relojDigital1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(54, 54, 54))))
+                .addGap(0, 16, Short.MAX_VALUE))
         );
 
         pack();
@@ -347,19 +440,22 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     
         String nombreCarrera = (String) jTableCarreras.getModel().getValueAt( jTableCarreras.getSelectedRow(),0).toString();
         String nombreCorredor = (String) jTableCarreras.getModel().getValueAt(jTableCorredores.getSelectedRow(),0).toString();
-        int corredorAgregar;
-        int carreraAgregar;
+        int corredorAgregar = 0;
+        int carreraAgregar = 0;
         int i = 0;
         int j = 0;
              while (i < listaCorredores.size())   {
-                  if (listaCorredores.get(i).getNombre().equals(nombreCorredor))
+                  if (listaCorredores.get(i).getNombre().equals(nombreCorredor)){
                       corredorAgregar = i;
+                  i = listaCorredores.size();}
+                  
                   else i++;
                   
              }
          while (j < listaCarreras.size())   {
-                  if (listaCarreras.get(j).getNombre().equals(nombreCarrera))
+                  if (listaCarreras.get(j).getNombre().equals(nombreCarrera)){
                       carreraAgregar = i;
+                  i = listaCarreras.size();}
                    else j++;
              }
         anadirCorredorCarrera(listaCorredores.get(i), listaCarreras.get(j));
@@ -368,9 +464,30 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // TODO add your handling code here:
+             int getSelectedRowForDeletion = jTableCorredoresCarrera.getSelectedRow();
+         dtm3.removeRow(getSelectedRowForDeletion);
+         
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void relojDigital1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_relojDigital1MouseClicked
+          if(carreraIniciada){
+        DialogoDorsal dialogoDorsal = new DialogoDorsal(this,true);
+      dialogoDorsal.setVisible(true);}
+    }//GEN-LAST:event_relojDigital1MouseClicked
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+            carreraIniciada = true;
+            jLabel4.setText("CARRERA EN CURSO");
+       
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+         carreraIniciada = false;
+          jLabel4.setText("");
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    
+  
     /**
      * @param args the command line arguments
      */
@@ -411,6 +528,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
@@ -421,12 +539,16 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTableCarreras;
     private javax.swing.JTable jTableCorredores;
     private javax.swing.JTable jTableCorredoresCarrera;
+    private javax.swing.JTable jTableTiempos;
     private com.mycompany.componentereloj.RelojDigital relojDigital1;
     // End of variables declaration//GEN-END:variables
 }
