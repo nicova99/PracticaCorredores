@@ -39,23 +39,26 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }
     
         private void mostrarCorredoresCarrera(){
-           DefaultTableModel dtm = (DefaultTableModel)jTableCorredoresCarrera.getModel();
+           DefaultTableModel dtm1 = (DefaultTableModel)jTableCorredoresCarrera.getModel();
+                  DefaultTableModel dtm2 = (DefaultTableModel)jTableCarreras.getModel();
           int filaCarrera = jTableCarreras.getSelectedRow();
           int columnaNombre = 0;
-          String nombreCarrera = (String)  jTableCarreras.getModel().getValueAt(filaCarrera, columnaNombre).toString();
+          String nombreCarrera = String.valueOf(dtm2.getValueAt(filaCarrera, columnaNombre).toString());
        
          
         int i = 0;
         Carrera carrera = listaCarreras.get(i);
         while(i < listaCarreras.size()){
+             
         if (carrera.getNombre().equals(nombreCarrera)){
-            int j = 0;
-            while(j < carrera.getListaCorredores().size()){
-               dtm.addRow(carrera.getListaCorredores().get(j).toArrayString());
+           
+               dtm1.addRow(carrera.getListaCorredores().get(i).toArrayString());
+              
                 }
+            carrera = listaCarreras.get(i);
+        i++;
         }
-        else i++;
-        }
+   
   
         }
         
@@ -438,8 +441,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
     
-        String nombreCarrera = (String) jTableCarreras.getModel().getValueAt( jTableCarreras.getSelectedRow(),0).toString();
-        String nombreCorredor = (String) jTableCarreras.getModel().getValueAt(jTableCorredores.getSelectedRow(),0).toString();
+         DefaultTableModel dtm1 = (DefaultTableModel)jTableCorredores.getModel();
+         DefaultTableModel dtm2 = (DefaultTableModel)jTableCarreras.getModel();
+        String nombreCarrera = (String)dtm2.getValueAt(jTableCarreras.getSelectedRow(),0).toString();
+        String nombreCorredor = (String) dtm1.getValueAt(jTableCorredores.getSelectedRow(),0).toString();
         int corredorAgregar = 0;
         int carreraAgregar = 0;
         int i = 0;
