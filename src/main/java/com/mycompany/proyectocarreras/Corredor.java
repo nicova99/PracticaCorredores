@@ -85,5 +85,13 @@ public class Corredor {
     s[3] = direccion;
     s[4] = Integer.toString(telefono);
     return s;}
+   
+      public String[] toArrayStringExamen(){
+    
+    String [] s= new String [3];
+    s[0] = nombre;
+    s[1] = DNI;
+    s[2] = fechaNacimiento.toString();
+    return s;}
 }
 
